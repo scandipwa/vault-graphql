@@ -5,9 +5,10 @@
  * See LICENSE for license details.
  *
  * @license OSL-3.0 (Open Software License ("OSL") v. 3.0)
- * @package scandipwa/base-theme
- * @link https://github.com/scandipwa/base-theme
+ * @package scandipwa/vault-graphql
+ * @link https://github.com/scandipwa/vault-graphql
  */
+
 export const UPDATE_IS_LOADING = 'UPDATE_IS_LOADING ';
 export const UPDATE_SELECTED_PAYMENT_METHOD = 'UPDATE_SELECTED_PAYMENT_METHOD';
 export const UPDATE_STORED_PAYMENT_METHODS = 'UPDATE_STORED_PAYMENT_METHODS';

@@ -6,8 +6,8 @@
   ~ See LICENSE for license details.
   ~
   ~ @license OSL-3.0 (Open Software License ("OSL") v. 3.0)
-  ~ @package scandipwa/stripe-graphql
-  ~ @link https://github.com/scandipwa/stripe-graphql
+  ~ @package scandipwa/vault-graphql
+  ~ @link https://github.com/scandipwa/vault-graphql
   -->
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
