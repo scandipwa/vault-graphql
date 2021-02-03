@@ -39,3 +39,7 @@ type Details {
     maskedCC: String
     expirationDate: String
 }
+
+extend type StoreConfig @doc(description: "The type contains information about a store config") {
+    instance_purchase_active: Boolean @doc(description: "Defines if instance purchase is enabled")
+}

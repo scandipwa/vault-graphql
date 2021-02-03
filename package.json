@@ -1,0 +1,24 @@
+{
+  "name": "vault-graphql",
+  "version": "0.0.0",
+  "license": "OSL-3.0",
+  "scandipwa": {
+    "type": "extension"
+  },
+  "eslintConfig": {
+    "extends": "@scandipwa"
+  },
+  "description": "**VaultGraphQl** provides type and resolver information for the GraphQl module to generate Vault (stored payment information) information endpoints. This module also provides mutations for modifying a payment token.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scandipwa/vault-graphql.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/scandipwa/vault-graphql/issues"
+  },
+  "homepage": "https://github.com/scandipwa/vault-graphql#readme"
+}
