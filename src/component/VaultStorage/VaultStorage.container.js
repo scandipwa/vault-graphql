@@ -61,6 +61,10 @@ export class VaultStorageContainer extends PureComponent {
         paymentMethods: this.handleFilterStoredPaymentMethods()
     });
 
+    /*
+     * Since from VaultGraphQl we are getting all stored paments with provided user token
+     * we need to filter them depending on opened payment method tab
+    */
     handleFilterStoredPaymentMethods() {
         const {
             isLoading,
@@ -76,18 +80,14 @@ export class VaultStorageContainer extends PureComponent {
             return items;
         }
 
-        // Split payment code because from selected payment we are getting code with vault postfix
-        const selectedPaymentCode = 'braintree_cc_vault'.split('_')[0];
+        /*
+         * Split payment code because from selected payment
+         * we are getting code with vault postfix
+         * braintree_cc_vault => braintree
+        */
+        const selectedPaymentCode =  paymentMethodVaultCode.split('_')[0];
 
-        const filteredPaymentMethods = items.filter((value) => {
-            const { payment_method_code } = value;
-
-            if (payment_method_code === selectedPaymentCode) {
-                return value;
-            }
-
-            return null;
-        });
+        const filteredPaymentMethods = items.filter(value => value.payment_method_code === selectedPaymentCode);
 
         return filteredPaymentMethods;
     }
