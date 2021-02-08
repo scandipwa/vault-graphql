@@ -9,33 +9,24 @@
  * @link https://github.com/scandipwa/vault-graphql
  */
 
-export class CheckoutPaymentsContainerPlugin {
-    aroundMapStateToProps = (args, callback) => {
-        const {
-            0: {
-                ConfigReducer: {
-                    instance_purchase_active: isInstancePurchaseActive
-                }
+/** @namespace VaultGraphql/Plugin/CheckoutPaymentsContainer/mapStateToProps */
+export const mapStateToProps = (args, callback) => {
+    const [
+        {
+            ConfigReducer: {
+                instance_purchase_active: isInstancePurchaseActive
             }
-        } = args;
+        }
+    ] = args;
 
-        return {
-            ...callback(...args),
-            isInstancePurchaseActive
-        };
+    return {
+        ...callback(...args),
+        isInstancePurchaseActive
     };
-}
-
-const {
-    aroundMapStateToProps
-} = new CheckoutPaymentsContainerPlugin();
-
-
-export const config = {
-    'Component/CheckoutPayments/Container/mapStateToProps': {
-        function: aroundMapStateToProps
-    }
 };
 
-export default config;
-
+export default {
+    'Component/CheckoutPayments/Container/mapStateToProps': {
+        function: mapStateToProps
+    }
+};

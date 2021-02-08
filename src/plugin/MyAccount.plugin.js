@@ -12,25 +12,16 @@
 import VaultStorage from '../component/VaultStorage';
 import { VAULT_STORAGE } from '../component/VaultStorage/VaultStorage.config';
 
-export class MyAccountPlugin {
-    updateRenderMap = (originalMember) => {
-        return {
-            ...originalMember,
-            [VAULT_STORAGE]: VaultStorage
-        };
-    };
-}
+/** @namespace VaultGraphql/Plugin/MyAccount/renderMap */
+export const renderMap = (originalMember) => ({
+    ...originalMember,
+    [VAULT_STORAGE]: VaultStorage
+});
 
-const {
-    updateRenderMap
-} = new MyAccountPlugin();
-
-export const config = {
+export default {
     'Route/MyAccount/Component': {
         'member-property': {
-            renderMap: updateRenderMap
+            renderMap
         }
     }
 };
-
-export default config;

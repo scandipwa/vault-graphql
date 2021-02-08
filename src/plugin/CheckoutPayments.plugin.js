@@ -16,51 +16,45 @@ import { isSignedIn } from 'Util/Auth';
 import VaultStorage from '../component/VaultStorage';
 import { BRAINTREE_CC_VAULT } from '../component/VaultStorage/VaultStorage.config';
 
-export class CheckoutPaymentsPlugin {
-    aroundPropTypes = (props) => ({
-        ...props,
-        isInstancePurchaseActive: PropTypes.bool.isRequired
-    });
+/** @namespace VaultGraphql/Plugin/CheckoutPayments/propTypes */
+export const propTypes = (props) => ({
+    ...props,
+    isInstancePurchaseActive: PropTypes.bool.isRequired
+});
 
-    renderBrainTreeVault() {
-        const { selectedPaymentCode } = this.props;
+/** @namespace VaultGraphql/Plugin/CheckoutPayments/rendeerBraintreeVault */
+export function renderBraintreeVault() {
+    const { selectedPaymentCode } = this.props;
 
-        return (
-            <VaultStorage
-              paymentMethodVaultCode={ selectedPaymentCode }
-              isCheckout
-            />
-        );
-    }
-
-    addVaultPayments = (originalMember, instance) => {
-        const { isInstancePurchaseActive } = instance.props;
-
-        if (!isSignedIn() || !isInstancePurchaseActive) {
-            return originalMember;
-        }
-
-        return {
-            ...originalMember,
-            [BRAINTREE_CC_VAULT]: this.renderBrainTreeVault.bind(instance)
-        };
-    };
+    return (
+        <VaultStorage
+          paymentMethodVaultCode={ selectedPaymentCode }
+          isCheckout
+        />
+    );
 }
 
-const {
-    addVaultPayments,
-    aroundPropTypes
-} = new CheckoutPaymentsPlugin();
+/** @namespace VaultGraphql/Plugin/CheckoutPayments/paymentRenderMap */
+export const paymentRenderMap = (originalMember, instance) => {
+    const { isInstancePurchaseActive } = instance.props;
 
-export const config = {
+    if (!isSignedIn() || !isInstancePurchaseActive) {
+        return originalMember;
+    }
+
+    return {
+        ...originalMember,
+        [BRAINTREE_CC_VAULT]: renderBraintreeVault.bind(instance)
+    };
+};
+
+export default {
     'Component/CheckoutPayments/Component': {
         'member-property': {
-            paymentRenderMap: addVaultPayments
+            paymentRenderMap
         },
         'static-member': {
-            propTypes: aroundPropTypes
+            propTypes
         }
     }
 };
-
-export default config;

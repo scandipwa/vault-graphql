@@ -13,22 +13,17 @@ import getStore from 'Store/index.js';
 
 import { VaultReducer } from '../store/Vault/Vault.reducer';
 
-export class AppPlugin {
-    addVaultReducer = (args, callback, instance) => {
-        getStore().injectReducer('VaultReducer', VaultReducer);
+/** @namespace VaultGraphql/Plugin/App/renderRedux */
+export const renderRedux = (args, callback, instance) => {
+    getStore().injectReducer('VaultReducer', VaultReducer);
 
-        return callback.apply(instance, args);
-    };
-}
-
-const {
-    addVaultReducer
-} = new AppPlugin();
+    return callback.apply(instance, args);
+};
 
 const config = {
     'Component/App/Component': {
         'member-function': {
-            renderRedux: addVaultReducer
+            renderRedux
         }
     }
 };

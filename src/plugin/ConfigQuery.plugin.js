@@ -9,7 +9,8 @@
  * @link https://github.com/scandipwa/vault-graphql
  */
 
-const addBaseFields = (args, callback) => [
+/** @namespace VaultGraphql/Plugin/ConfigQuery/getStoreConfigFields */
+export const _getStoreConfigFields = (args, callback) => [
     ...callback(...args),
     'instance_purchase_active'
 ];
@@ -17,7 +18,7 @@ const addBaseFields = (args, callback) => [
 export default {
     'Query/Config': {
         'member-function': {
-            _getStoreConfigFields: addBaseFields
+            _getStoreConfigFields
         }
     }
 };

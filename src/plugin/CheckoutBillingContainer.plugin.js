@@ -11,56 +11,49 @@
 
 import { BRAINTREE_CC_VAULT } from '../component/VaultStorage/VaultStorage.config';
 
-export class CheckoutBillingContainerPlugin {
-    aroundMapStateToProps = (args, callback) => {
-        const {
-            0: {
-                VaultReducer: {
-                    public_hash: selectedStoredPaymentMethod
-                }
+/** @namespace VaultGraphql/Plugin/CheckoutBillingContainer/mapStateToProps */
+export const mapStateToProps = (args, callback) => {
+    const [
+        {
+            VaultReducer: {
+                public_hash: selectedStoredPaymentMethod
             }
-        } = args;
+        }
+    ] = args;
+
+    return {
+        ...callback(...args),
+        selectedStoredPaymentMethod
+    };
+};
+
+/** @namespace VaultGraphql/Plugin/CheckoutBillingContainer/getPaymentData */
+export const _getPaymentData = (args, callback, instance) => {
+    const { selectedStoredPaymentMethod } = instance.props;
+    const { paymentMethod: code } = instance.state;
+
+    // Add new case for 3-party vault payment methods
+    switch (code) {
+    case BRAINTREE_CC_VAULT:
 
         return {
-            ...callback(...args),
-            selectedStoredPaymentMethod
+            code,
+            additional_data: {
+                public_hash: selectedStoredPaymentMethod
+            }
         };
-    };
-
-    aroundGetPaymentData(args, callback, instance) {
-        const { selectedStoredPaymentMethod } = instance.props;
-        const { paymentMethod: code } = instance.state;
-
-        // Add new case for 3-party vault payment methods
-        switch (code) {
-        case BRAINTREE_CC_VAULT:
-
-            return {
-                code,
-                additional_data: {
-                    public_hash: selectedStoredPaymentMethod
-                }
-            };
-        default:
-            return callback(...args);
-        }
-    }
-}
-
-const {
-    aroundGetPaymentData,
-    aroundMapStateToProps
-} = new CheckoutBillingContainerPlugin();
-
-export const config = {
-    'Component/CheckoutBilling/Container': {
-        'member-function': {
-            _getPaymentData: aroundGetPaymentData
-        }
-    },
-    'Component/CheckoutBilling/Container/mapStateToProps': {
-        function: aroundMapStateToProps
+    default:
+        return callback(...args);
     }
 };
 
-export default config;
+export default {
+    'Component/CheckoutBilling/Container': {
+        'member-function': {
+            _getPaymentData
+        }
+    },
+    'Component/CheckoutBilling/Container/mapStateToProps': {
+        function: mapStateToProps
+    }
+};
