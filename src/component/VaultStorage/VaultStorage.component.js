@@ -51,7 +51,6 @@ export class VaultStorage extends PureComponent {
         const {
             isCheckout,
             selectedStoredPaymentMethod,
-            onCardSelect
         } = this.props;
         const {
             public_hash,
@@ -162,10 +161,10 @@ export class VaultStorage extends PureComponent {
         const { isLoading } = this.props;
         return (
             <>
-            <Loader isLoading={ isLoading } />
-            <div block="VaultStorage">
-                { this.renderContent() }
-            </div>
+                <Loader isLoading={ isLoading } />
+                <div block="VaultStorage">
+                    { this.renderContent() }
+                </div>
             </>
         );
     }

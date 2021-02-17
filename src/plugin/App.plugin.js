@@ -13,8 +13,8 @@ import getStore from 'Store/index.js';
 
 import { VaultReducer } from '../store/Vault/Vault.reducer';
 
-/** @namespace VaultGraphql/Plugin/App/renderRedux */
-export const renderRedux = (args, callback, instance) => {
+/** @namespace VaultGraphql/Plugin/App/renderContextProviders */
+export const renderContextProviders = (args, callback, instance) => {
     getStore().injectReducer('VaultReducer', VaultReducer);
 
     return callback.apply(instance, args);
@@ -23,7 +23,7 @@ export const renderRedux = (args, callback, instance) => {
 const config = {
     'Component/App/Component': {
         'member-function': {
-            renderRedux
+            renderContextProviders
         }
     }
 };
