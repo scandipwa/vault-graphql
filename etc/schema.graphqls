@@ -4,7 +4,7 @@
 # See LICENSE for license details.
 #
 # @license OSL-3.0 (Open Software License ("OSL") v. 3.0)
-# @package scandipwa/quote-graphql
+# @package scandipwa/vault-graphql
 # @link https://github.com/scandipwa/quote-graphql
 #
 # Copyright © Magento, Inc. All rights reserved.
@@ -38,4 +38,8 @@ type Details {
     type: String
     maskedCC: String
     expirationDate: String
+}
+
+extend type StoreConfig @doc(description: "The type contains information about a store config") {
+    instance_purchase_active: Boolean @doc(description: "Defines if instance purchase is enabled")
 }

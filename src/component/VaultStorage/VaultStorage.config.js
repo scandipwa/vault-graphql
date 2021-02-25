@@ -1,4 +1,3 @@
-<?php
 /**
  * ScandiPWA - Progressive Web App for Magento
  *
@@ -9,8 +8,6 @@
  * @package scandipwa/vault-graphql
  * @link https://github.com/scandipwa/vault-graphql
  */
-declare(strict_types=1);
 
-use Magento\Framework\Component\ComponentRegistrar;
-
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'ScandiPWA_VaultGraphQl', __DIR__);
+export const BRAINTREE_CC_VAULT = 'braintree_cc_vault';
+export const VAULT_STORAGE = 'vault-storage';

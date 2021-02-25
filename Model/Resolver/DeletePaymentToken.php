@@ -6,8 +6,8 @@
  * See LICENSE for license details.
  *
  * @license OSL-3.0 (Open Software License ("OSL") v. 3.0)
- * @package scandipwa/quote-graphql
- * @link    https://github.com/scandipwa/quote-graphql
+ * @package scandipwa/vault-graphql
+ * @link    https://github.com/scandipwa/vault-graphql
  */
 
 declare(strict_types=1);
